@@ -16,7 +16,7 @@ export default async function Home() {
     <main>
       {scoreList.map((score) => (
         <h1 key={score.id}>
-          {score.name} | {score.city}
+          {score.player} | {score.city}
         </h1>
       ))}
     </main>

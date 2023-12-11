@@ -1,36 +1,12 @@
 "use client";
 import InputCity from "./InputCity";
-import { addDoc } from "firebase/firestore";
-import { scoreCol } from "@/firebase/firebase";
-import { revalidatePath } from "next/cache";
 import Input from "./Input";
 
 export default function Page() {
-  const onSubmit = async (formdata: FormData) => {
-    "use server";
-    [1, 2, 3, 4, 5, 6, 7].forEach((num) => {
-      if (formdata.get(`city${num}`)) {
-        addDoc(scoreCol, {
-          // console.log({
-          player: formdata.get(`player${num}`),
-          city: formdata.get(`city${num}`),
-          military: formdata.get(`military${num}`),
-          money: formdata.get(`money${num}`),
-          wonder: formdata.get(`wonder${num}`),
-          blue: formdata.get(`blue${num}`),
-          yellow: formdata.get(`yellow${num}`),
-          science: formdata.get(`science${num}`),
-          guild: formdata.get(`guild${num}`),
-        });
-      }
-    });
-    revalidatePath("/");
-  };
-
   return (
     <main>
       <div className="max-w-lg mx-auto">
-        <form action={onSubmit} className="flex flex-col">
+        <form action={"/api/add"} method="POST" className="flex flex-col">
           <div className="flex flex-col rounded-lg overflow-hidden">
             <div className="grid grid-cols-8 bg-slate-700 text-white">
               <p className="bg-slate-800 p-1">Nazwa</p>
