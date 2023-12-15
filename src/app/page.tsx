@@ -1,7 +1,6 @@
-import { collection, getDocs } from "firebase/firestore";
+import { getDocs } from "firebase/firestore";
 import { gameCol, scoreCol } from "../firebase/firebase";
 import { DocumentData } from "firebase/firestore";
-import Link from "next/link";
 
 export default async function Home() {
   const gameSnapshot = await getDocs(gameCol);

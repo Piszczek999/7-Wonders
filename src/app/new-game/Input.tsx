@@ -48,6 +48,7 @@ export default function Input({ count }: { count: number }) {
       <input
         list="cities"
         name={`city${count}`}
+        autoComplete="off"
         className="bg-slate-400 border-l-2 border-black"
       />
       <input
@@ -93,7 +94,7 @@ export default function Input({ count }: { count: number }) {
         onChange={handleInputChange(setScienceInput)}
       />
       <input
-        type="text"
+        type="number"
         name={`guild${count}`}
         autoComplete="off"
         className="bg-violet-400 border-l-2 border-black text-center"
@@ -105,7 +106,7 @@ export default function Input({ count }: { count: number }) {
         autoComplete="off"
         value={sum}
         className="bg-slate-800 border-l-2 border-black text-slate-200 text-center"
-        disabled
+        readOnly
       />
     </>
   );

@@ -53,8 +53,15 @@ export default function Page() {
               <input
                 type="number"
                 name="count"
+                autoComplete="off"
                 className="w-1/2 grow bg-sky-200 rounded-lg border-2 border-black p-1"
-                onChange={(e) => setCount(parseInt(e.target.value))}
+                onChange={(event) => {
+                  const newCount = parseInt(event.target.value);
+
+                  if (!isNaN(newCount) && newCount >= 3 && newCount <= 7) {
+                    setCount(newCount);
+                  }
+                }}
               />
             </div>
             <button

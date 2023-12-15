@@ -5,11 +5,11 @@ import { redirect } from "next/navigation";
 
 export async function POST(request: Request) {
   const formdata = await request.formData();
+  console.log(formdata);
 
-  [1, 2, 3, 4, 5, 6, 7].forEach(async (num) => {
+  [...Array(7)].forEach(async (_, num) => {
     if (formdata.get(`player${num}`)) {
-      await addDoc(scoreCol, {
-        // console.log({
+      const documentData = {
         player: formdata.get(`player${num}`),
         city: formdata.get(`city${num}`),
         military: formdata.get(`military${num}`),
@@ -19,7 +19,10 @@ export async function POST(request: Request) {
         yellow: formdata.get(`yellow${num}`),
         science: formdata.get(`science${num}`),
         guild: formdata.get(`guild${num}`),
-      });
+        sum: formdata.get(`sum${num}`),
+      };
+
+      await addDoc(scoreCol, documentData);
     }
   });
   revalidatePath("/");
