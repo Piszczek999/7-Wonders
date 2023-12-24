@@ -12,6 +12,6 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 
-const db = getFirestore(app);
-export const scoreCol = collection(db, "scores");
-export const gameCol = collection(db, "games");
+export const db = getFirestore(app);
+// export const scoreCol = collection(db, "scores");
+// export const gameCol = collection(db, "games");

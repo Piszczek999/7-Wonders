@@ -1,12 +1,12 @@
-import { getDocs } from "firebase/firestore";
-import { gameCol, scoreCol } from "../firebase/firebase";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../firebase/firebase";
 import { DocumentData } from "firebase/firestore";
 
 export default async function Home() {
-  const gameSnapshot = await getDocs(gameCol);
+  const gameSnapshot = await getDocs(collection(db, "games"));
   const gameList = gameSnapshot.docs.map((doc) => doc.data());
 
-  const scoreSnapshot = await getDocs(scoreCol);
+  const scoreSnapshot = await getDocs(collection(db, "scores"));
   const scoreList = scoreSnapshot.docs.map((doc) => {
     return { id: doc.id, ...doc.data() } as DocumentData;
   });

@@ -1,5 +1,5 @@
-import { scoreCol } from "@/firebase/firebase";
-import { addDoc } from "firebase/firestore";
+import { db } from "@/firebase/firebase";
+import { addDoc, collection } from "firebase/firestore";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
@@ -20,9 +20,10 @@ export async function POST(request: Request) {
         science: formdata.get(`science${num}`),
         guild: formdata.get(`guild${num}`),
         sum: formdata.get(`sum${num}`),
+        timestamp: Date.now(),
       };
 
-      await addDoc(scoreCol, documentData);
+      await addDoc(collection(db, "scores"), documentData);
     }
   });
   revalidatePath("/");
